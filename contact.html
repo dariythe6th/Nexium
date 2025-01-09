@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты | Nexium</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+      <nav>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <ul class="menu" id="menu">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="about.html">Команда</a></li>
+          <li><a href="portfolio.html">Проекты</a></li>
+
+          <li class="dropdown">
+            <a href="services.html">Услуги &#9662;</a>
+            <ul class="submenu">
+              <li><a href="services.html#web">Разработка сайтов</a></li>
+              <li><a href="services.html#phone">Приложения для Android/IOS</a></li>
+              <li><a href="services.html#desktop">Создание десктоп приложений</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </header>
+
+  <main>
+    <section id="contact">
+      <h1>Контакты</h1>
+      <form action="#" method="POST">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Сообщение:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    
+  </footer>
+<script src="script.js"></script>
+  </body>
+    
+</html>
