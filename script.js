@@ -256,3 +256,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+// Обработчик события прокрутки для шапки
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('header');
+  // Проверяем, если прокручено больше 10vh (10% высоты окна)
+  if (window.scrollY > window.innerHeight * 0.1) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});

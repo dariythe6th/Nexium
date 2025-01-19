@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
 }
 
 /* Общие стили */
@@ -10,10 +11,14 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  box-sizing: border-box;
-  color: #333;
-  background-color: #f9f9f9;
-  
+  padding-top: 20vh;
+  color: #ffffff;
+  background: linear-gradient(180deg, black, #0B0A23, black);
+  /* background-color: rgba(51, 51, 51, 1); */
+}
+
+section {
+  margin-right: 0;
 }
 
 /* Шапка */
@@ -23,15 +28,21 @@ header {
   left: 0;
   width: 100%; 
   z-index: 1000;
-
-  background-color: #333;
-  color: white;
-  height: 10vh;
+  height: 5rem;
   padding: 1rem 2rem;
+
+  background-color: rgba(51, 51, 51, 0);
+  transition: background-color 0.3s ease;
+  color: white;
+  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+header.scrolled {
+  background-color: rgba(51, 51, 51, 1);
 }
 
 /* картинка + лого в шапке */
@@ -87,7 +98,8 @@ header {
   top: 100%;
   left: 0;
   background: #333;
-  padding: 1rem 0;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -109,33 +121,37 @@ header {
 
 /* Адаптивность */
 .menu-toggle {
-  display: none;
   font-size: 24px;
   color: white;
   cursor: pointer;
+  display: none;
 }
 
 @media (max-width: 768px) {
+  /* Branding всегда остаётся слева */
   .branding {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    text-align: start;
+    justify-content: flex-start;
   }
 
   .team-name {
     font-size: 1.2rem;
   }
 
+  /* Меню скрывается и появляется справа */
   .menu {
     display: none;
     flex-direction: column;
+    align-items: start;
     gap: 1rem;
     background-color: #333;
     position: absolute;
     top: 100%;
-    right: 0;
-    left: 0;
-    padding: 1rem 0;
+    right: 2rem;
+    padding: 1rem;
+    border-radius: 4px;
   }
 
   .menu.active {
@@ -144,11 +160,25 @@ header {
 
   .menu-toggle {
     display: block;
+    order: 2; /* Перемещаем иконку меню в конец */
   }
 
   .submenu {
-    position: static;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: -260px; /* Позиционируем подменю слева от бургер-меню */
+    margin-top: 0;
     box-shadow: none;
+  }
+
+  .dropdown:hover .submenu {
+    display: block; /* Подменю становится видимым при наведении */
+  }
+
+  .submenu a {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
   }
 }
 
@@ -162,12 +192,20 @@ section {
 
 h1, h2 {
   margin-bottom: 1rem;
-  color: #444;
+  color: #c3d2ff;
 }
 
 p {
   margin-bottom: 1rem;
   line-height: 1.6;
+}
+
+.btn {
+  color: #c3d2ff;
+}
+
+.btn:active {
+  color: #fff;
 }
 
 /* Формы */
