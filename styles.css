@@ -14,7 +14,6 @@ body {
   padding-top: 20vh;
   color: #ffffff;
   background: linear-gradient(180deg, black, #0B0A23, black);
-  /* background-color: rgba(51, 51, 51, 1); */
 }
 
 section {
@@ -24,15 +23,15 @@ section {
 /* Шапка */
 header {
   position: fixed;
-  top: 0;
+  top: 15px;
   left: 0;
   width: 100%; 
   z-index: 1000;
   height: 5rem;
-  padding: 1rem 2rem;
+  padding: 1rem 3rem;
 
   background-color: rgba(51, 51, 51, 0);
-  transition: background-color 0.3s ease;
+  transition: top 0.3s ease, background-color 0.5s ease;
   color: white;
   
   display: flex;
@@ -42,6 +41,7 @@ header {
 }
 
 header.scrolled {
+  top: 0;
   background-color: rgba(51, 51, 51, 1);
 }
 
@@ -68,7 +68,8 @@ header.scrolled {
 .menu {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem; /* Увеличенный gap */
+  
 }
 
 .link {
@@ -80,32 +81,41 @@ header.scrolled {
 }
 
 .link:hover {
-  color: #00bcd4;
-}
-
-.link.active {
-  color: #00bcd4;
-  font-weight: bold;
+  color: #a2d4ff;
 }
 
 .dropdown {
   position: relative;
 }
 
+.dropdown::after { /* Добавляем псевдоэлемент для отступа */
+  content: '';
+  position: absolute;
+  top: 100%; /* Вырезаем пространство под якорем */
+  left: 0;
+  width: 100%;
+  height: 3px; /* Высота маржина */
+  background: transparent;
+  pointer-events: none; /* Чтобы не мешал взаимодействию с элементами */
+}
+
 .submenu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 1.5rem; /* Располагаем меню с учетом маржина */
   left: 0;
   background: #333;
-  margin-top: 1rem;
   padding: 0.5rem 0;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0; /* Начальная непрозрачность */
+  transition: opacity 0.3s ease-in-out; /* Плавный переход для появления */
 }
 
-.dropdown:hover .submenu {
+.dropdown:hover .submenu,
+.submenu:hover { /* Поддержка активации через верхний маржин */
   display: block;
+  opacity: 1; /* Появление */
 }
 
 .submenu a {
@@ -113,11 +123,16 @@ header.scrolled {
   padding: 0.5rem 1rem;
   color: white;
   text-decoration: none;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Плавное изменение фона и масштаба */
 }
 
 .submenu a:hover {
-  background-color: #00bcd4;
+  background-color: #6c758e;
+  transform: scale(1.1); /* Индивидуальное увеличение пункта */
 }
+
+
 
 /* Адаптивность */
 .menu-toggle {
@@ -187,12 +202,13 @@ section {
   padding: 4rem 2rem;
   text-align: start;
   margin-right: 50%;
-
+  position: relative; /* Добавлено position: relative для использования z-index */
+  z-index: 10; /* Текст находится поверх кубов */
 }
 
 h1, h2 {
   margin-bottom: 1rem;
-  color: #c3d2ff;
+  color: #a2d4ff;
 }
 
 p {
@@ -201,7 +217,7 @@ p {
 }
 
 .btn {
-  color: #c3d2ff;
+  color: #a2d4ff;
 }
 
 .btn:active {
@@ -501,3 +517,6 @@ footer {
 .modal form button:hover {
   background-color: #00bcd4;
 }
+
+
+

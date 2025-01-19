@@ -1,8 +1,82 @@
 /* пупупу, тут наверняка что-то будет */
 #home {
-
-  padding-top: 10hv;
+  padding: 20vh 50% 20vh 80px ;
   height: 500px;
   width: 100%;
   /* background: linear-gradient(180deg, black, #0B0A23, black); */
+}
+
+
+/* Композиция кубов */
+.composition {
+  position: absolute; /* Свободное размещение блока */
+  top: 10%; /* На уровне секции */
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  z-index: 1; /* Кубы находятся под текстом */
+  pointer-events: none; /* Кубы не мешают взаимодействию с текстом */
+}
+
+.cube {
+  position: absolute; /* Нужно для отображения z-index и абсолютного позиционирования */
+  background: linear-gradient(45deg, #E7F6FF, #162E4F);
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
+  /* border-radius: 8px; */
+  transform-origin: center;
+}
+
+/* Cube 1 */
+.cube.cube1 {
+  width: 450px;
+  height: 450px;
+  opacity: 0.5;
+  transform: rotate(-36deg);
+  z-index: 3;
+  top: 170px;
+  left: 50px;
+}
+
+/* Cube 2 */
+.cube.cube2 {
+  width: 300px;
+  height: 300px;
+  opacity: 0.4;
+  transform: rotate(286deg);
+    z-index: 1;
+    top: -10px;
+    left: 105px;
+}
+
+/* Cube 3 */
+.cube.cube3 {
+  width: 120px;
+  height: 120px;
+  opacity: 0.7;
+  transform: rotate(253deg);
+  z-index: 4;
+  top: 396px;
+  left: -13px;
+}
+
+/* Cube 4 */
+.cube.cube4 {
+  width: 70px;
+  height: 70px;
+  opacity: 0.3;
+  transform: rotate(38deg);
+  z-index: 5;
+  top: 450px;
+  left: -300px;
+}
+
+/* Cube 5 */
+.cube.cube5 {
+  width: 160px;
+  height: 160px;
+  opacity: 0.2;
+  transform: rotate(-93deg);
+  z-index: 2;
+  top: 70px;
+  left: -180px;  
 }
