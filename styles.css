@@ -17,8 +17,9 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
 ul li {
-  list-style: none;
+  list-style: none; 
 }
 
 nav ul {
@@ -39,13 +40,15 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #ff9800;
+  /* color: #ff9800; */
 }
 
 /* Разделы */
 section {
   padding: 4rem 2rem;
-  text-align: center;
+  text-align: start;
+  margin-right: 50%;
+
 }
 
 h1, h2 {
@@ -131,6 +134,7 @@ footer {
     padding: 1rem;
   }
 }
+
 /* Навигация */
 nav ul {
   list-style: none;
