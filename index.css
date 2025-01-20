@@ -1,6 +1,6 @@
 /* пупупу, тут наверняка что-то будет */
 #home {
-  padding: 20vh 50% 20vh 80px ;
+  padding: 20vh 60% 20vh 80px ;
   height: 500px;
   width: 100%;
   /* background: linear-gradient(180deg, black, #0B0A23, black); */
@@ -74,7 +74,7 @@
 .cube.cube5 {
   width: 160px;
   height: 160px;
-  opacity: 0.2;
+  opacity: 0.6;
   transform: rotate(-93deg);
   z-index: 2;
   top: 70px;

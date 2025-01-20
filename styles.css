@@ -5,6 +5,20 @@
   font-family: 'Trebuchet MS', Arial, sans-serif;
 }
 
+#spotlight {
+  position: absolute;
+  width: 400px; /* Размер светового круга */
+  height: 400px;
+  background: radial-gradient(circle, rgba(48, 55, 93, 0.7) 0%, rgba(0, 0, 0, 0.9) 80%, black 100%);
+  pointer-events: none; /* Чтобы не мешал взаимодействию */
+  border-radius: 50%;
+  mix-blend-mode: lighten; /* Для работы с градиентом фона */
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  transition: width 0.2s ease, height 0.2s ease; /* Плавное изменение размера */
+}
+
+
 /* Общие стили */
 body {
   font-family: Arial, sans-serif;
@@ -13,7 +27,9 @@ body {
   height: 100%;
   padding-top: 20vh;
   color: #ffffff;
-  background: linear-gradient(180deg, black, #0B0A23, black);
+  /* background: linear-gradient(to top, black , #0B0A23, black); */
+  background-color: black;
+  background-attachment: fixed;
 }
 
 section {
@@ -62,6 +78,7 @@ header.scrolled {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
+  text-decoration: none;
 }
 
 /* блок с якорями */
@@ -77,11 +94,13 @@ header.scrolled {
   text-decoration: none;
   font-size: 1rem;
   position: relative;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease; /* Плавное изменение масштаба */
+  padding: 5px;
+  display: inline-block; /* Чтобы масштабирование работало корректно */
 }
 
 .link:hover {
-  color: #a2d4ff;
+  transform: scale(1.1); /* Увеличение текста на 10% */
 }
 
 .dropdown {
@@ -152,7 +171,7 @@ header.scrolled {
   }
 
   .team-name {
-    font-size: 1.2rem;
+    font-size: 1.2rem;    
   }
 
   /* Меню скрывается и появляется справа */

@@ -268,3 +268,32 @@ window.addEventListener('scroll', function() {
   }
 });
 
+
+// script.js
+
+// Создаём "фонарик"
+const spotlight = document.createElement("div");
+spotlight.id = "spotlight";
+document.body.appendChild(spotlight);
+
+// Обновляем позицию "фонарика" при движении мыши
+document.addEventListener("mousemove", (e) => {
+  spotlight.style.left = `${e.pageX}px`;
+  spotlight.style.top = `${e.pageY}px`;
+});
+
+// Находим все активные элементы
+const interactiveElements = document.querySelectorAll(".link, .btn, .team-name");
+
+// Добавляем обработчики событий
+interactiveElements.forEach((el) => {
+  el.addEventListener("mouseenter", () => {
+    spotlight.style.width = "200px"; // Сужение
+    spotlight.style.height = "200px";
+  });
+
+  el.addEventListener("mouseleave", () => {
+    spotlight.style.width = "400px"; // Возврат к исходному размеру
+    spotlight.style.height = "400px";
+  });
+});
