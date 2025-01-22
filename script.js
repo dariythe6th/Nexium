@@ -288,12 +288,12 @@ const interactiveElements = document.querySelectorAll(".link, .btn, .team-name")
 // Добавляем обработчики событий
 interactiveElements.forEach((el) => {
   el.addEventListener("mouseenter", () => {
-    spotlight.style.width = "200px"; // Сужение
-    spotlight.style.height = "200px";
+    spotlight.style.width = "300px"; // Сужение
+    spotlight.style.height = "300px";
   });
 
   el.addEventListener("mouseleave", () => {
-    spotlight.style.width = "400px"; // Возврат к исходному размеру
-    spotlight.style.height = "400px";
+    spotlight.style.width = "500px"; // Возврат к исходному размеру
+    spotlight.style.height = "500px";
   });
 });
