@@ -257,16 +257,37 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Обработчик события прокрутки для шапки
-window.addEventListener('scroll', function() {
-  const header = document.querySelector('header');
-  // Проверяем, если прокручено больше 10vh (10% высоты окна)
-  if (window.scrollY > window.innerHeight * 0.1) {
-    header.classList.add('scrolled');
+
+//для шапки
+document.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  const overlay = document.querySelector(".header-overlay");
+
+  if (window.scrollY > window.innerHeight * 0.1) { // Если прокрутили на 10% высоты экрана
+    header.classList.add("scrolled");
+    overlay.classList.add("scrolled");
   } else {
-    header.classList.remove('scrolled');
+    header.classList.remove("scrolled");
+    overlay.classList.remove("scrolled");
   }
 });
+
+
+window.addEventListener("scroll", () => {
+  const overlay = document.querySelector(".content-overlay");
+  const scrollY = window.scrollY;
+
+  if (scrollY > 50) {
+    // Если прокрутка больше 50px
+    overlay.classList.add("scrolled");
+  } else {
+    // Если прокрутка меньше 50px
+    overlay.classList.remove("scrolled");
+  }
+});
+
+
+
 
 
 // script.js
