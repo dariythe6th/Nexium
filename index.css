@@ -10,74 +10,126 @@
 
 /* Композиция кубов */
 .composition {
-  position: absolute; /* Свободное размещение блока */
-  top: 10%; /* На уровне секции */
+  position: absolute;
+  top: 10%;
   right: -200px;
   width: 600px;
   height: 600px;
-  z-index: 1; /* Кубы находятся под текстом */
-  pointer-events: none; /* Кубы не мешают взаимодействию с текстом */
+  z-index: 1;
+  pointer-events: none;
 }
 
+/* Общие стили для кубов */
 .cube {
-  position: absolute; /* Нужно для отображения z-index и абсолютного позиционирования */
-  background: linear-gradient(45deg, #E7F6FF, #162E4F);
+  position: absolute;
+  background: linear-gradient(45deg, #E7F6FF, #102038);
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
-  /* border-radius: 8px; */
   transform-origin: center;
+  opacity: 0; /* Начальное состояние: невидимо */
+  animation-fill-mode: forwards; /* Оставить конечное состояние после анимации */
 }
 
 /* Cube 1 */
 .cube.cube1 {
   width: 450px;
   height: 450px;
-  opacity: 0.5;
-  transform: rotate(-36deg);
   z-index: 3;
   top: 170px;
   left: 50px;
+  animation: cube1Animation 2s ease-out 0s forwards;
+}
+
+@keyframes cube1Animation {
+  0% {
+    transform: translateX(100%) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(-36deg);
+    opacity: 0.5;
+  }
 }
 
 /* Cube 2 */
 .cube.cube2 {
   width: 300px;
   height: 300px;
-  opacity: 0.4;
-  transform: rotate(286deg);
-    z-index: 1;
-    top: -10px;
-    left: 105px;
+  z-index: 1;
+  top: -10px;
+  left: 105px;
+  animation: cube2Animation 2s ease-out 0.2s forwards;
+}
+
+@keyframes cube2Animation {
+  0% {
+    transform: translateX(100%) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(286deg);
+    opacity: 0.4;
+  }
 }
 
 /* Cube 3 */
 .cube.cube3 {
   width: 120px;
   height: 120px;
-  opacity: 0.7;
-  transform: rotate(253deg);
   z-index: 4;
   top: 396px;
   left: -13px;
+  animation: cube3Animation 2s ease-out 0.4s forwards;
+}
+
+@keyframes cube3Animation {
+  0% {
+    transform: translateX(100%) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(253deg);
+    opacity: 0.7;
+  }
 }
 
 /* Cube 4 */
 .cube.cube4 {
   width: 70px;
   height: 70px;
-  opacity: 0.3;
-  transform: rotate(38deg);
   z-index: 5;
   top: 450px;
   left: -300px;
+  animation: cube4Animation 2s ease-out 0.6s forwards;
+}
+
+@keyframes cube4Animation {
+  0% {
+    transform: translateX(100%) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(38deg);
+    opacity: 0.3;
+  }
 }
 
 /* Cube 5 */
 .cube.cube5 {
   width: 160px;
   height: 160px;
-  opacity: 0.6;
-  transform: rotate(-93deg);
   z-index: 2;
   top: 70px;
-  left: -180px;  
+  left: -180px;
+  animation: cube5Animation 2s ease-out 0.8s forwards;
+}
+
+@keyframes cube5Animation {
+  0% {
+    transform: translateX(100%) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(-93deg);
+    opacity: 0.6;
+  }
 }
