@@ -290,7 +290,7 @@ window.addEventListener("scroll", () => {
 
 
 
-// script.js
+
 
 // Создаём "фонарик"
 const spotlight = document.createElement("div");
@@ -318,3 +318,26 @@ interactiveElements.forEach((el) => {
     spotlight.style.height = "500px";
   });
 });
+
+
+
+
+//для анимации появления элементов при прокрутке
+function onEntry(entry) {
+  entry.forEach(change => {
+    if (change.isIntersecting) {
+      change.target.classList.add('element-show');
+    }
+  });
+}
+
+let options = {
+  threshold: [0.5] // Порог видимости элемента (50%)
+};
+let observer = new IntersectionObserver(onEntry, options);
+
+let elements = document.querySelectorAll('#intro, #highlights, footer'); // Выбираем все нужные элементы
+
+for (let elm of elements) {
+  observer.observe(elm);
+}
