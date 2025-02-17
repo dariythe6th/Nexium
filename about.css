@@ -1,0 +1,37 @@
+.team {
+    display: flex;
+    flex-wrap: wrap; /* позволяет переносить элементы на новую строку */
+    justify-content: center;
+  }
+
+.member {
+  width: 300px; /* Ширина блока участника */
+  margin: 20px;
+  text-align: center; /* центрирование текста */
+}
+.profile-img {
+  width: 100%; /* ширина изображения на всю ширину блока */
+  height: auto;
+  margin-bottom: 10px;
+}
+h3 {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+p {
+  font-size: 18px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .member {
+    width: calc(50% - 40px); /* два участника в ряд на мобильных */
+  }
+}
+
+@media (max-width: 480px) {
+  .member {
+    width: calc(100% - 40px); /* один участник в ряд на очень маленьких экранах */
+  }
+}

@@ -39,24 +39,29 @@
 
 
 #intro {
-  margin: 0 20% 300px 15%;
+  margin: 20vh 20% 20vh 15%;
   text-align: center;
 }
 
-#intro h2, #intro p, #highlights h2, #highlights ul {
+#intro h2, #intro p, #highlights h2 {
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Плавный переход */
 }
 
 #intro.element-show h2, #intro.element-show p, 
-#highlights.element-show h2, #highlights.element-show ul {
+#highlights.element-show h2 {
   opacity: 1;
   transform: translateY(0);
 }
 
 #highlights {
+  text-align: right;
+  padding: 20vh 80px 20vh 65%;
+}
 
+#highlights p, #highlights h2 {
+  text-align: start;
 }
 
 
