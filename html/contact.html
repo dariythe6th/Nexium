@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | Nexium</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <div class="branding">
+          <img class="img-header" src="Picsart_25-01-09_20-45-22-028.png" alt="логотип">
+          <span class="team-name">Nexium</span>
+        </div>
+        <div class="menu" id="menu">
+          <a href="index.html" class="link">Главная</a>
+          <a href="about.html" class="link">Команда</a>
+          <a href="portfolio.html" class="link">Проекты</a>
+          <div class="dropdown">
+            <a href="services.html" class="link">Услуги &#9662;</a>
+            <div class="submenu">
+              <a href="services.html#web">Разработка сайтов</a>
+              <a href="services.html#phone">Приложения для Android/IOS</a>
+              <a href="services.html#desktop">Создание десктоп приложений</a>
+            </div>
+          </div>
+          <a href="contact.html" class="link">Контакты</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="header-overlay"></div> <!-- фон шапки при прокрутке сайта -->
+      
+      <section id="contact">
+        <h1>Контакты</h1>
+        <form action="#" method="POST">
+          <label for="name">Имя:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Сообщение:</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Отправить</button>
+        </form>
+      </section>
+    </main>
+
+
+    <div class="content-overlay"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,690 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+#spotlight {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(52, 58, 89, 0.7) 0%, rgba(0, 0, 0, 0.9) 70%, black 100%);
+  pointer-events: none;
+  border-radius: 50%;
+  mix-blend-mode: lighten;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100vw;
+  padding-top: 20vh;
+  color: #ffffff;
+  background-color: black;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+.content-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0) 100%);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, backdrop-filter 0.7s ease;
+}
+
+.content-overlay.scrolled {
+  opacity: 1;
+  backdrop-filter: blur(0.5px);
+}
+
+section {
+  margin-right: 0;
+}
+
+header {
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 5rem;
+  padding: 1rem 3rem;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: top 0.3s ease;
+}
+
+header.scrolled {
+  top: 0.5rem;
+}
+
+.header-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0) 100%);
+  z-index: 999;
+  transition: height 0.5s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.header-overlay.scrolled {
+  height: 12vh;
+  opacity: 1;
+}
+
+.branding {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.img-header {
+  width: 80px;
+  height: auto;
+  margin-right: 1rem;
+}
+
+.team-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.link:hover {
+  transform: scale(1.1);
+  color: #a2d4ff;
+}
+
+/* Активный пункт меню */
+.link.active {
+  color: #fff !important;
+}
+
+.link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, 
+    rgba(255, 255, 0, 0) 0%, 
+    rgba(255, 255, 0, 0.8) 50%,
+    rgba(255, 255, 0, 0) 100%);
+  border-radius: 2px;
+  animation: highlight-pulse 2s infinite;
+}
+
+@keyframes highlight-pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  pointer-events: none;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  background: #333;
+  padding: 0.5rem 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown:hover .submenu,
+.submenu:hover {
+  display: block;
+  opacity: 1;
+}
+
+.submenu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submenu a:hover {
+  background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(108,117,142,0.6) 20%, rgba(108,117,142,0.6) 80%, rgba(0,0,0,0) 100%);
+  transform: scale(1.1);
+}
+
+/* Разделы */
+section {
+  padding: 4rem 2rem;
+  text-align: start;
+  position: relative;
+  z-index: 10;
+}
+
+h1, h2 {
+  margin-bottom: 1rem;
+  color: #a2d4ff;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.btn {
+  color: #a2d4ff;
+}
+
+.btn:active {
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+/* Адаптивность */
+.menu-toggle {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Branding всегда остаётся слева */
+  .branding {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+    justify-content: flex-start;
+  }
+
+  .team-name {
+    font-size: 1.2rem;    
+  }
+
+  /* Меню скрывается и появляется справа */
+  .menu {
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    background-color: #333;
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    order: 2; /* Перемещаем иконку меню в конец */
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: -260px; /* Позиционируем подменю слева от бургер-меню */
+    margin-top: 0;
+    box-shadow: none;
+  }
+
+  .dropdown:hover .submenu {
+    display: block; /* Подменю становится видимым при наведении */
+  }
+
+  .submenu a {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+/* Разделы */
+section {
+  padding: 4rem 2rem;
+  text-align: start;
+  /* margin-right: 50%; */
+  position: relative; /* Добавлено position: relative для использования z-index */
+  z-index: 10; /* Текст находится поверх кубов */
+}
+
+h1, h2 {
+  margin-bottom: 1rem;
+  color: #a2d4ff;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.btn {
+  color: #a2d4ff;
+}
+
+.btn:active {
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+/* Формы */
+form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #ff9800;
+}
+
+
+
+
+
+
+
+
+/* Портфолио */
+.portfolio-item {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+/* Футер */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  margin-top: 10rem;
+}
+
+
+
+
+
+
+
+/* Галерея */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+
+
+
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #00bcd4;
+}
+
+
+
+
+
+
+
+/* Фильтр */
+.filter {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.filter button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+  background: #333;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.filter button:hover {
+  background-color: #00bcd4;
+}
+
+
+
+
+
+
+
+
+/* Слайдер в модальном окне */
+.modal-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-slider img {
+  max-width: 90%;
+  max-height: 400px;
+  border-radius: 5px;
+}
+
+.modal-slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.modal-slider button:hover {
+  background-color: #00bcd4;
+}
+
+#prev {
+  left: 10px;
+}
+
+#next {
+  right: 10px;
+}
+
+
+
+
+
+
+
+/* Блоки услуг */
+.service-block {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.service-block h1 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.service-block ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.service-block ul li {
+  margin-bottom: 5px;
+}
+
+.service-block p {
+  margin: 10px 0;
+}
+
+.service-block strong {
+  color: #00bcd4;
+}
+
+.service-form {
+  margin-top: 20px;
+}
+
+.service-form label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.service-form input,
+.service-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.service-form button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.service-form button:hover {
+  background-color: #00bcd4;
+}
+
+
+
+
+
+
+
+
+/* Модальное окно заказа */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  margin: 15% auto;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal form label {
+  display: block;
+  margin-top: 10px;
+}
+
+.modal form input,
+.modal form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.modal form button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.modal form button:hover {
+  background-color: #00bcd4;
+}
+
+
+
