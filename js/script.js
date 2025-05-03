@@ -343,14 +343,41 @@ for (let elm of elements) {
 }
 
 
-// Выделение активной секции шапки при скролле
+// Выделение активной секции шапки при скролле с анимацией подчеркивания
 document.addEventListener("DOMContentLoaded", function() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".menu .link");
+  const activeIndicator = document.createElement('div');
+  activeIndicator.classList.add('active-indicator');
+  document.querySelector('.menu').appendChild(activeIndicator);
+  
+  // Инициализация индикатора
+  function initIndicator() {
+    const activeLink = document.querySelector('.menu .link.active');
+    if (activeLink) {
+      const { width, left } = activeLink.getBoundingClientRect();
+      const menuLeft = document.querySelector('.menu').getBoundingClientRect().left;
+      activeIndicator.style.width = `${width}px`;
+      activeIndicator.style.left = `${left - menuLeft}px`;
+      activeIndicator.style.opacity = '1';
+    }
+  }
+  
+
+
+
+  
+  // Плавное перемещение индикатора
+  function moveIndicator(target) {
+    const { width, left } = target.getBoundingClientRect();
+    const menuLeft = document.querySelector('.menu').getBoundingClientRect().left;
+    activeIndicator.style.width = `${width}px`;
+    activeIndicator.style.left = `${left - menuLeft}px`;
+  }
   
   function updateActiveNav() {
     let current = "";
-    const scrollPosition = window.scrollY + window.innerHeight * 0.3; // 30% от высоты экрана
+    const scrollPosition = window.scrollY + window.innerHeight * 0.3;
     
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
@@ -372,32 +399,37 @@ document.addEventListener("DOMContentLoaded", function() {
       if (href.endsWith(current) || 
           (current === "home" && href.includes("index.html"))) {
         link.classList.add("active");
+        moveIndicator(link);
       }
     });
   }
 
+  // Прокрутка к разделу при клике
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').split('#')[1];
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        // Обновляем активную ссылку
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        moveIndicator(this);
+        
+        // Плавная прокрутка
+        window.scrollTo({
+          top: targetSection.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
   window.addEventListener('scroll', throttle(updateActiveNav, 100));
+  window.addEventListener('resize', initIndicator);
+  
+  // Инициализация при загрузке
+  initIndicator();
   updateActiveNav();
 });
-
-// Оптимизация для частых событий скролла
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function() {
-    const context = this;
-    const args = arguments;
-    if (!lastRan) {
-      func.apply(context, args);
-      lastRan = Date.now();
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(function() {
-        if ((Date.now() - lastRan) >= limit) {
-          func.apply(context, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
-    }
-  };
-}

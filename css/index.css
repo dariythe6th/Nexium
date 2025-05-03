@@ -263,9 +263,9 @@ font-style: italic;
 }
 
 .filter button {
-  background: none;
-  border: 1px solid #102038;
-  color: #102038;
+  background: rgba(41, 57, 96, 0.3);
+  border: 1px solid #1e3b66;
+  color:  rgb(0, 166, 255);
   padding: 8px 16px;
   margin: 0 5px;
   cursor: pointer;
