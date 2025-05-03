@@ -133,11 +133,6 @@ header.scrolled {
   color: #a2d4ff;
 }
 
-/* Активный пункт меню */
-.link.active {
-  color: #fff !important;
-}
-
 .link.active::after {
   content: '';
   position: absolute;

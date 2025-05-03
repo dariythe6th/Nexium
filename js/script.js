@@ -343,46 +343,61 @@ for (let elm of elements) {
 }
 
 
-
-// Обновленный код для выделения активного пункта меню
+// Выделение активной секции шапки при скролле
 document.addEventListener("DOMContentLoaded", function() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".menu .link");
   
   function updateActiveNav() {
     let current = "";
-    const scrollPosition = window.scrollY + 200;
+    const scrollPosition = window.scrollY + window.innerHeight * 0.3; // 30% от высоты экрана
     
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.clientHeight;
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        current = section.getAttribute("id");
+      const sectionId = section.getAttribute("id");
+
+      if (
+        scrollPosition >= sectionTop - 50 && 
+        scrollPosition < sectionTop + sectionHeight - 50
+      ) {
+        current = sectionId;
       }
     });
-    
+
     navLinks.forEach(link => {
       link.classList.remove("active");
       const href = link.getAttribute("href");
       
-      // Проверяем совпадение с текущим разделом
-      if (href.includes(current) || 
-          (current === "" && (href === "index.html" || href === "#"))) {
+      if (href.endsWith(current) || 
+          (current === "home" && href.includes("index.html"))) {
         link.classList.add("active");
       }
     });
   }
-  
-  // Инициализация
-  window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav(); // Вызываем сразу при загрузке
-  
-  // Также обновляем при клике
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinks.forEach(l => l.classList.remove("active"));
-      this.classList.add("active");
-    });
-  });
+
+  window.addEventListener('scroll', throttle(updateActiveNav, 100));
+  updateActiveNav();
 });
+
+// Оптимизация для частых событий скролла
+function throttle(func, limit) {
+  let lastFunc;
+  let lastRan;
+  return function() {
+    const context = this;
+    const args = arguments;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function() {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  };
+}
