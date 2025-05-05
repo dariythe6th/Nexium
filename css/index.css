@@ -228,49 +228,100 @@
 /* about */
 .team {
   display: flex;
-  flex-wrap: wrap; /* позволяет переносить элементы на новую строку */
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 .member {
-width: 300px; /* Ширина блока участника */
-margin: 20px;
-text-align: center; /* центрирование текста */
+  width: 300px;
+  margin: 20px;
+  text-align: center;
+}
+
+.profile-img-container {
+  width: 90%;
+  height: 200px; /* Фиксированная высота для всех фото */
+  overflow: hidden; /* Обрезаем лишние части изображения */
+  border-radius: 8px; /* Закругленные углы */
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .profile-img {
-width: 100%; /* ширина изображения на всю ширину блока */
-height: auto;
-margin-bottom: 10px;
+  width: 100%;
+  height: 63%;
+  object-fit: cover; /* Сохраняет пропорции и заполняет контейнер */
+  object-position: center; /* Центрирует изображение */
+  transition: transform 0.3s ease; /* Плавное увеличение при наведении */
+}
+
+.profile-img:hover {
+  transform: scale(1.05); /* Легкое увеличение при наведении */
 }
 
 #about h1 {
   text-align: center;
+  font-size: 2rem;
 }
 
 #about h3 {
-font-weight: bold;
-font-size: 24px;
-margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 5px;
 }
 
 #about p {
-font-size: 18px;
-font-style: italic;
+  font-size: 18px;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
-.member {
-  width: calc(50% - 40px); /* два участника в ряд на мобильных */
-}
+  .member {
+    width: calc(50% - 40px);
+  }
+  .profile-img-container {
+    height: 250px; /* Немного уменьшаем высоту на планшетах */
+  }
 }
 
 @media (max-width: 480px) {
-.member {
-  width: calc(100% - 40px); /* один участник в ряд на очень маленьких экранах */
-}
+  .member {
+    width: calc(100% - 40px);
+  }
+  .profile-img-container {
+    height: 300px; /* Возвращаем исходную высоту на мобильных */
+  }
 }
 
+
+.team-description {
+  max-width: 70%;
+  margin: 3rem auto;
+  padding: 0 5%;
+  text-align: center;
+}
+
+.team-description p {
+  font-style: normal !important;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+  .team-description {
+    max-width: 85%;
+    margin: 2rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-description {
+    max-width: 90%;
+    text-align: left; /* На узких экранах лучше left */
+    padding: 0 3%;
+  }
+}
 
 
 
@@ -280,6 +331,10 @@ font-style: italic;
 #portfolio {
   padding: 10vh 15% 20vh;
   text-align: center;
+}
+
+#portfolio h1 {
+  font-size: 2rem;
 }
 
 .filter {
