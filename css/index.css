@@ -60,10 +60,34 @@
   padding: 20vh 80px 20vh 65%;
 }
 
-#highlights p, #highlights h2 {
+#highlights h2, #highlights p {
   text-align: start;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
+#highlights.element-show h2, 
+#highlights.element-show p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#highlights.element-show h2 {
+  transition-delay: 0.1s;
+}
+
+#highlights.element-show p:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+#highlights.element-show p:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+#highlights.element-show p:nth-child(4) {
+  transition-delay: 0.4s;
+}
 
 
 
