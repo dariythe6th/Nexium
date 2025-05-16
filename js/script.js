@@ -421,9 +421,10 @@ navLinks.forEach(link => {
         this.classList.add('active');
         moveIndicator(this);
         
-        // Плавная прокрутка
+        const offset = 100; // Можно регулировать этот отступ
+        const targetPosition = targetSection.offsetTop - offset;
         window.scrollTo({
-          top: targetSection.offsetTop - 100,
+          top: targetPosition,
           behavior: 'smooth'
         });
       }

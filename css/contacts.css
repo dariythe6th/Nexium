@@ -1,6 +1,6 @@
 /* Стили для страницы контактов */
 #contact {
-  padding: 6rem 3rem;
+  padding: 3rem 3rem 6rem 3rem;
   max-width: 800px;
   margin: 0 auto;
   position: relative;
@@ -8,12 +8,10 @@
 }
 
 #contact h1 {
-  font-size: 3rem;
+  font-size: 32px;
   margin-bottom: 2rem;
   text-align: center;
-  background: linear-gradient(90deg, #a2d4ff, #4facfe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: linear-gradient(90deg, #a2d4ff, #4facfe);
   text-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
 }
 
