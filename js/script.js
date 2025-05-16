@@ -375,40 +375,44 @@ document.addEventListener("DOMContentLoaded", function() {
     activeIndicator.style.left = `${left - menuLeft}px`;
   }
   
-  function updateActiveNav() {
-    let current = "";
-    const scrollPosition = window.scrollY + window.innerHeight * 0.3;
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      const sectionId = section.getAttribute("id");
+function updateActiveNav() {
+  let current = "";
+  const scrollPosition = window.scrollY + window.innerHeight * 0.3;
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    const sectionId = section.getAttribute("id");
 
-      if (
-        scrollPosition >= sectionTop - 50 && 
-        scrollPosition < sectionTop + sectionHeight - 50
-      ) {
-        current = sectionId;
-      }
-    });
+    if (
+      scrollPosition >= sectionTop - 50 && 
+      scrollPosition < sectionTop + sectionHeight - 50
+    ) {
+      current = sectionId;
+    }
+  });
 
-    navLinks.forEach(link => {
-      link.classList.remove("active");
-      const href = link.getAttribute("href");
-      
-      if (href.endsWith(current) || 
-          (current === "home" && href.includes("index.html"))) {
-        link.classList.add("active");
-        moveIndicator(link);
-      }
-    });
-  }
-
-  // Прокрутка к разделу при клике
   navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.classList.remove("active");
+    const href = link.getAttribute("href");
+    
+    if (href === `#${current}` || 
+        (current === "home" && href === "index.html")) {
+      link.classList.add("active");
+      moveIndicator(link);
+    }
+  });
+}
+
+ // Прокрутка к разделу при клике
+navLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    
+    // Обрабатываем только якорные ссылки (начинающиеся с #)
+    if (href.startsWith('#')) {
       e.preventDefault();
-      const targetId = this.getAttribute('href').split('#')[1];
+      const targetId = href.substring(1);
       const targetSection = document.getElementById(targetId);
       
       if (targetSection) {
@@ -423,8 +427,10 @@ document.addEventListener("DOMContentLoaded", function() {
           behavior: 'smooth'
         });
       }
-    });
+    }
+    // Для обычных ссылок (на другие страницы) ничего не делаем - переход сработает нормально
   });
+});
 
   window.addEventListener('scroll', throttle(updateActiveNav, 100));
   window.addEventListener('resize', initIndicator);
