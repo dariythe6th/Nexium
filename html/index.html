@@ -6,8 +6,8 @@
     <title>Главная | Nexium</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/index.css"/>
+    
   </head>
-
 
   <body>
     <div class="header-overlay"></div> <!-- фон шапки при прокрутке сайта -->
@@ -105,29 +105,158 @@
         <div class="gallery">
           <div class="gallery-item" data-category="web">
             <img src="../images/7b704abfb51ef6ff4da90d0b259c0aca.jpg" alt="Проект 1" data-full="project1-large.jpg">
+            <div class="project-info" style="display: none;">
+              <h3>Веб-сайт для ресторана</h3>
+              <p>Полностью адаптивный сайт с системой онлайн-бронирования и меню. Разработан на React с использованием Node.js для бэкенда.</p>
+              <p><strong>Технологии:</strong> HTML5, CSS3, JavaScript, React, Node.js, MongoDB</p>
+              <p><strong>Сроки:</strong> 2 месяца</p>
+            </div>
           </div>
           <div class="gallery-item" data-category="design">
             <img src="../images/7b72d691d2f97e3cb304abc6c6d756be.jpg" alt="Проект 2" data-full="project2-large.jpg">
+            <div class="project-info" style="display: none;">
+              <h3>Дизайн интерфейса мобильного приложения</h3>
+              <p>Современный и удобный UI/UX дизайн для приложения доставки еды. Включает все экраны и состояния элементов.</p>
+              <p><strong>Инструменты:</strong> Figma, Adobe Photoshop, Illustrator</p>
+              <p><strong>Сроки:</strong> 3 недели</p>
+            </div>
           </div>
           <div class="gallery-item" data-category="logo">
             <img src="../images/cbb68575ef0de458b335bd540574dd5a.jpg" alt="Проект 3" data-full="project3-large.jpg">
+            <div class="project-info" style="display: none;">
+              <h3>Логотип для IT-стартапа</h3>
+              <p>Уникальный логотип, отражающий инновационность и технологичность компании. Разработано несколько вариантов для разных носителей.</p>
+              <p><strong>Инструменты:</strong> Adobe Illustrator, CorelDRAW</p>
+              <p><strong>Сроки:</strong> 2 недели</p>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Модальное окно для галереи -->
+      <div id="galleryModal" class="modal">
+        <span class="close">&times;</span>
+        
+        <div class="gallery-nav">
+          <button id="prevBtn">←</button>
+          <div class="modal-content">
+          <img class="modal-image" id="modalImage" src="" alt="">
+          <div class="modal-info" id="modalInfo">
+            <!-- Сюда будет вставлено описание проекта -->
+          </div>
+        </div>
+          <button id="nextBtn">→</button>
+        </div>
+      </div>
+
       <footer>
-
-
+        <!-- Ваш футер -->
       </footer>
-
 
       <!-- фонарик на курсоре -->
       <div class="cursor" id="cursor"></div> 
     </main>
 
-    <!-- заьемнение и блюр под шапкой -->
+    <!-- затемнение и блюр под шапкой -->
     <div class="content-overlay"></div>
     
     <script src="../js/script.js"></script>
+    <script>
+      // Скрипт для галереи портфолио
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalInfo = document.getElementById('modalInfo');
+        const closeBtn = document.querySelector('.close');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        let currentIndex = 0;
+        let items = [];
+        
+        // Инициализация галереи
+        galleryItems.forEach((item, index) => {
+          items.push(item);
+          item.addEventListener('click', function() {
+            currentIndex = index;
+            openModal(currentIndex);
+          });
+        });
+        
+        // Открытие модального окна
+        function openModal(index) {
+          const imgSrc = items[index].querySelector('img').getAttribute('src');
+          const projectInfo = items[index].querySelector('.project-info').innerHTML;
+          
+          modalImg.setAttribute('src', imgSrc);
+          modalInfo.innerHTML = projectInfo;
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+        
+        // Закрытие модального окна
+        closeBtn.addEventListener('click', function() {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        });
+        
+        // Клик вне изображения закрывает модальное окно
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }
+        });
+        
+        // Навигация по галерее
+        prevBtn.addEventListener('click', function() {
+          currentIndex = (currentIndex - 1 + items.length) % items.length;
+          openModal(currentIndex);
+        });
+        
+        nextBtn.addEventListener('click', function() {
+          currentIndex = (currentIndex + 1) % items.length;
+          openModal(currentIndex);
+        });
+        
+        // Навигация с клавиатуры
+        document.addEventListener('keydown', function(e) {
+          if (modal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') {
+              currentIndex = (currentIndex - 1 + items.length) % items.length;
+              openModal(currentIndex);
+            } else if (e.key === 'ArrowRight') {
+              currentIndex = (currentIndex + 1) % items.length;
+              openModal(currentIndex);
+            } else if (e.key === 'Escape') {
+              modal.style.display = 'none';
+              document.body.style.overflow = 'auto';
+            }
+          }
+        });
+        
+        // Фильтрация проектов
+        const filterButtons = document.querySelectorAll('.filter button');
+        filterButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Обновляем активную кнопку фильтра
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Фильтруем проекты
+            galleryItems.forEach(item => {
+              if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          });
+        });
+      });
+    </script>
   </body>
 </html>
