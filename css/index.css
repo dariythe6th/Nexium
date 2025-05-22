@@ -222,8 +222,89 @@
 
 
 
+/* Зеркальная композиция кубов слева */
+.composition-left {
+  position: absolute;
+  top: 155%;
+  left: -100px;
+  width: 600px;
+  height: 600px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Общие стили для кубов (зеркальные) */
+.cube-left {
+  position: absolute;
+  background: linear-gradient(45deg, #E7F6FF, #102038);
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
+  transform-origin: center;
+  opacity: 0.5; /* Фиксированная прозрачность без анимации */
+}
+
+/* Cube 1 (зеркальный) */
+.cube-left.cube1-left {
+  width: 450px;
+  height: 450px;
+  z-index: 3;
+  top: 170px;
+  left: 50px;
+  transform: rotate(-36deg);
+}
+
+/* Cube 2 (зеркальный) */
+.cube-left.cube2-left {
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  top: 30px;
+  left: 340px;
+  transform: rotate(286deg);
+  opacity: 0.4;
+}
+
+/* Cube 3 (зеркальный) */
+.cube-left.cube3-left {
+  width: 120px;
+  height: 120px;
+  z-index: 4;
+  top: 50px;
+  left: 100px;
+  transform: rotate(253deg);
+  opacity: 0.7;
+}
+
+/* Cube 4 (зеркальный) */
+.cube-left.cube4-left {
+  width: 70px;
+  height: 70px;
+  z-index: 5;
+  top: 20px;
+  left: 800px;
+  transform: rotate(38deg);
+  opacity: 0.3;
+}
+
+/* Cube 5 (зеркальный) */
+.cube-left.cube5-left {
+  width: 160px;
+  height: 160px;
+  z-index: 2;
+  top: 400px;
+  left: 500px;
+  transform: rotate(-93deg);
+  opacity: 0.6;
+}
 
 
+
+
+
+
+
+#about {
+  margin-top: 100px;
+}
 
 /* about */
 .team {
@@ -235,6 +316,7 @@
 .member {
   width: 300px;
   margin: 20px;
+  /* margin-top: 50px; */
   text-align: center;
 }
 
