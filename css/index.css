@@ -499,7 +499,7 @@
 .modal-image {
   flex: 1;
   max-height: 80vh;
-  max-width: 800px;
+  max-width: 1000px;
   object-fit: contain;
   border-radius: 8px 0 0 8px;
 }
