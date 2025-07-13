@@ -1,60 +1,68 @@
 <!DOCTYPE html>
-  <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты | Nexium</title>
-    <link rel="icon" href="../images/682f71fa5a0f3.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/contacts.css">
-  </head>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="contacts-title">Контакты | Nexium</title>
+  <link rel="icon" href="../images/682f71fa5a0f3.svg" type="image/x-icon">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/contacts.css">
+  <script src="../js/translations.js"></script>
+  <script src="../js/language.js"></script>
+</head>
 
-  <body>
-    <header>
-        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-        <div class="branding">
-          <img class="img-header" src="../images/Picsart_25-01-09_20-45-22-028.png" alt="логотип">
-          <a href="index.html" class="team-name">Nexium</a>
+<body>
+  <header>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <div class="branding">
+      <img class="img-header" src="../images/Picsart_25-01-09_20-45-22-028.png" alt="логотип">
+      <a href="index.html" class="team-name">Nexium</a>
+    </div>
+    <div class="menu" id="menu">
+      <a href="index.html" class="link" data-translate="menu-home">Главная</a>
+      <a href="index.html#about" class="link" data-translate="menu-team">Команда</a>
+      <a href="index.html#portfolio" class="link" data-translate="menu-projects">Проекты</a>
+      <a href="hacks.html" class="link" data-translate="menu-hackathons">Хакатоны</a>
+      <div class="dropdown">
+        <a href="#" class="link" data-translate="services-dropdown">Услуги ▼</a>
+        <div class="submenu">
+          <a href="services.html" data-translate="web-title">Разработка сайтов</a>
+          <a href="services.html#phone" data-translate="mobile-title">Приложения для Android/IOS</a>
+          <a href="services.html#desktop" data-translate="desktop-title">Создание десктоп приложений</a>
         </div>
-        <div class="menu" id="menu">
-          <a href="index.html" class="link">Главная</a>
-          <a href="index.html#about" class="link">Команда</a>
-          <a href="index.html#portfolio" class="link">Проекты</a>
-          <a href="hacks.html" class="link">Хакатоны</a>
-          <div class="dropdown">
-            <a href="#" class="link">Услуги &#9662;</a>
-            <div class="submenu">
-              <a href="services.html">Разработка сайтов</a>
-              <a href="services.html#phone">Приложения для Android/IOS</a>
-              <a href="services.html#desktop">Создание десктоп приложений</a>
-            </div>
-          </div>
-          <a href="contact.html" class="link">Контакты</a>
-        </div>
-    </header>
+      </div>
+      <a href="contact.html" class="link" data-translate="menu-contacts">Контакты</a>
+    </div>
+  </header>
 
-    <main>
-      <div class="header-overlay"></div> <!-- фон шапки при прокрутке сайта -->
-      
-      <section id="contact">
-        <h1>Заполните анкету, чтобы связаться с нами</h1>
-        <form action="#" method="POST">
-          <label for="name">Имя:</label>
-          <input type="text" id="name" name="name" required>
+  <main>
+    <div class="header-overlay"></div>
+    
+    <section id="contact">
+      <h1 data-translate="contact-title">Заполните анкету, чтобы связаться с нами</h1>
+      <form action="#" method="POST">
+        <label for="name" data-translate="contact-name">Имя:</label>
+        <input type="text" id="name" name="name" required data-translate-placeholder="contact-name">
 
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+        <label for="email" data-translate="contact-email">Email:</label>
+        <input type="email" id="email" name="email" required data-translate-placeholder="contact-email">
 
-          <label for="message">Сообщение:</label>
-          <textarea id="message" name="message" required></textarea>
+        <label for="message" data-translate="contact-message">Сообщение:</label>
+        <textarea id="message" name="message" required data-translate-placeholder="contact-message"></textarea>
 
-          <button type="submit">Отправить</button>
-        </form>
-      </section>
-    </main>
+        <button type="submit" data-translate="contact-submit">Отправить</button>
+      </form>
+    </section>
+  </main>
 
+  <div class="content-overlay"></div>
 
-    <div class="content-overlay"></div>
+    <div class="language-container">
+      <button id="languageToggle" class="language-toggle">EN</button>
+    </div>
+
+    <script src="../js/translations.js"></script>
+    <script src="../js/language.js"></script>
     <script src="../js/script.js"></script>
-  </body>
+</body>
 </html>

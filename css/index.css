@@ -209,7 +209,7 @@
   animation: cube5Animation 2s ease-out 0.8s forwards;
 }
 
-@keyframes cube5Animation {
+@keyframes  cube5Animation {
   0% {
     transform: translateX(100%) rotate(0deg);
     opacity: 0;
