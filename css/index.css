@@ -220,12 +220,14 @@
   }
 }
 
+
+
 /* Зеркальная композиция кубов слева */
 .composition-left {
   position: absolute;
   top: 155%;
   left: 0;
-  width: 100%;
+  width: 90%;
   max-width: 100vw;
   height: 800px;
   z-index: 1;
@@ -467,51 +469,52 @@
 }
 
 
-/* Стили для модального окна галереи */
+/* Модальное окно галереи */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 10;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0,0,0,0.9);
   backdrop-filter: blur(5px);
-  align-items: center;
-  justify-content: center;
+  overflow: auto;
+}
+
+.modal-container {
+  position: relative;
+  width: 1100px;
+  height: 700px;
+  margin: 100px auto 10px auto;
+  background: rgba(30, 30, 40, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+  animation: zoom 0.3s;
 }
 
 .modal-content {
   display: flex;
-  margin: auto;
-  padding: 20px;
-  max-width: 90%;
-  max-height: 90%;
-  animation: zoom 0.3s;
-  background: rgba(30, 30, 40, 0.95);
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  position: relative;
+  flex-direction: column;
+  height: 100%;
 }
 
 .modal-image {
-  flex: 1;
-  max-height: 80vh;
-  max-width: 1000px;
+  width: 100%;
+  height: 500px;
   object-fit: contain;
-  border-radius: 8px 0 0 8px;
+  border-radius: 10px 10px 0 0;
+  background: #1a1a2a;
 }
 
 .modal-info {
-  flex: 1;
-  padding: 20px;
+  padding: 20px 30px 15px 30px;
   color: #fff;
+  height: 200px;
   overflow-y: auto;
-  max-height: 80vh;
-  background: rgba(20, 20, 30, 0.8);
-  border-radius: 0 8px 8px 0;
+  background: rgba(20, 20, 30, 0.9);
+  border-radius: 0 0 10px 10px;
 }
 
 .modal-info h3 {
@@ -532,13 +535,20 @@
 .close {
   position: absolute;
   top: 15px;
-  right: 35px;
+  right: 20px;
   color: #f1f1f1;
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
   cursor: pointer;
   z-index: 2;
+  background: rgba(0,0,0,0.5);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .close:hover {
@@ -546,34 +556,46 @@
   transform: scale(1.1);
 }
 
-.gallery-nav {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 15px;
-}
-
-.gallery-nav button {
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(74, 143, 231, 0.7);
   border: none;
   color: white;
-  padding: 10px 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  z-index: 2;
 }
 
-.gallery-nav button:hover {
+.nav-btn:hover {
   background: rgba(74, 143, 231, 0.9);
-  transform: translateY(-2px);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn-left {
+  left: -80px;
+}
+
+.nav-btn-right {
+  right: -80px;
 }
 
 /* Анимация появления */
 @keyframes zoom {
-  from { transform: scale(0.8); opacity: 0; }
+  from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
+
 
 /* Стили для галереи */
 .gallery {
@@ -608,6 +630,30 @@
 .gallery-item:hover img {
   transform: scale(1.05);
 }
+
+.gallery-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.gallery-nav button {
+  background: rgba(74, 143, 231, 0.7);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.gallery-nav button:hover {
+  background: rgba(74, 143, 231, 0.9);
+  transform: translateY(-2px);
+}
+
 
 /* Стили для фильтров */
 .filter {

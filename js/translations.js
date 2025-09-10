@@ -39,13 +39,17 @@ const translations = {
     'filter-design': 'Design',
 
     // Члены команды
-    'team-member-darya-name': 'Darya',
+    'team-member-darya-name': 'Daria',
     'team-member-darya-position': 'Backend Developer',
     'team-member-darya-description': 'Specializes in server-side development, application architecture design and database work. Uses Java, SQL and other technologies to create reliable and scalable logic. Interested in new technologies and music.',
 
     'team-member-elena-name': 'Elena',
     'team-member-elena-position': 'Frontend Developer',
     'team-member-elena-description': 'Specializes in developing responsive and aesthetic user interfaces. Proficient in HTML, CSS, JavaScript and modern frameworks like React. Interested in animation, style and improving usability.',
+
+    'team-member-varvara-name': 'Varvara',
+    'team-member-varvara-position': 'Mobile Developer',
+    'team-member-varvara-description': 'Specializes in cross-platform mobile app development using Flutter. Creates intuitive and performant interfaces for iOS and Android. Passionate about learning new technologies and user experience design.',
 
     'team-member-onix-name': 'Onyx',
     'team-member-onix-position': 'Chief Relaxation Officer',
@@ -150,6 +154,10 @@ const translations = {
     'team-member-elena-name': 'Елена',
     'team-member-elena-position': 'Frontend-разработчик',
     'team-member-elena-description': 'Специализируется на разработке адаптивных и эстетичных пользовательских интерфейсов. Владеет HTML, CSS, JavaScript и современными фреймворками, такими как React. Увлекается анимацией, стилем и повышением удобства использования.',
+
+    'team-member-varvara-name': 'Варвара',
+    'team-member-varvara-position': 'Мобильный разработчик',
+    'team-member-varvara-description': 'Специализируется на разработке кроссплатформенных мобильных приложений с использованием Flutter. Создает интуитивно понятные и производительные интерфейсы для iOS и Android. Увлекается изучением новых технологий и дизайном пользовательского опыта.',
 
     'team-member-onix-name': 'Оникс',
     'team-member-onix-position': 'Главный по релаксу',

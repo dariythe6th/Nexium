@@ -12,7 +12,6 @@
   </head>
 
   <body>
-    <div class="header-overlay"></div> <!-- фон шапки при прокрутке сайта -->
     <header>
         <div class="menu-toggle" id="menu-toggle">&#9776;</div>
         <div class="branding">
@@ -35,6 +34,7 @@
           <a href="contact.html" class="link" data-translate="menu-contacts">Контакты</a>
         </div>
     </header>
+    <div class="header-overlay"></div> <!-- фон шапки при прокрутке сайта -->
     
     <main>
       <section id="home">
@@ -99,6 +99,17 @@
           </div>
 
           <div class="member">
+            <img src="../images/Варя.jpg" alt="Фото Варвары" class="profile-img">
+            <h3 data-translate="team-member-varvara-name">Варвара</h3>
+            <p data-translate="team-member-varvara-position">Мобильный разработчик</p>
+            <div class="member-description" data-translate="team-member-varvara-description">
+              Специализируется на разработке кроссплатформенных мобильных приложений с использованием Flutter.
+              Создает интуитивно понятные и производительные интерфейсы для iOS и Android.
+              Увлекается изучением новых технологий и дизайном пользовательского опыта.
+            </div>
+          </div>
+
+          <div class="member">
             <img src="../images/группа поддержки.jpg" alt="Фото Котика" class="profile-img">
             <h3 data-translate="team-member-onix-name">Оникс</h3>
             <p data-translate="team-member-onix-position">Главный по релаксу</p>
@@ -124,7 +135,8 @@
           <button data-filter="web" data-translate="filter-web">Веб-разработка</button>
           <button data-filter="design" data-translate="filter-design">Дизайн</button>
         </div>
- <!-- В разделе портфолио замените gallery-items на: -->
+
+        
 <div class="gallery">
   <!-- Проект 1 -->
   <div class="gallery-item" data-category="web">
@@ -175,22 +187,25 @@
   </div>
 </div>
 
-<!-- Модальное окно для галереи (оставьте в конце body) -->
+
+
+
+<!-- Модальное окно для галереи -->
 <div id="galleryModal" class="modal">
-  <span class="close">&times;</span>
-  <div class="modal-content">
-    <div class="modal-image-container">
+  <div class="modal-container">
+    <span class="close">&times;</span>
+    <div class="modal-content">
       <img class="modal-image" id="modalImage" src="" alt="">
+      <div class="modal-info" id="modalInfo">
+        <!-- Сюда будет вставлено описание проекта -->
+      </div>
     </div>
-    <div class="modal-info" id="modalInfo">
-      <!-- Сюда будет вставлено описание проекта -->
-    </div>
-    <div class="modal-navigation">
-      <button id="prevBtn" aria-label="Previous project">←</button>
-      <button id="nextBtn" aria-label="Next project">→</button>
-    </div>
+    <button id="prevBtn" class="nav-btn nav-btn-left" aria-label="Previous project">‹</button>
+    <button id="nextBtn" class="nav-btn nav-btn-right" aria-label="Next project">›</button>
   </div>
 </div>
+
+
 
       <!-- фонарик на курсоре -->
       <div class="cursor" id="cursor"></div> 
@@ -210,6 +225,7 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const galleryItems = document.querySelectorAll('.gallery-item');
+        const headerOverlay = document.querySelector('.header-overlay');
         
         let currentIndex = 0;
         let items = [];
@@ -232,19 +248,28 @@
           modalInfo.innerHTML = projectInfo;
           modal.style.display = 'flex';
           document.body.style.overflow = 'hidden';
+          
+          // Скрываем черный фон шапки
+          headerOverlay.style.opacity = '0';
         }
         
         // Закрытие модального окна
-        closeBtn.addEventListener('click', function() {
+        function closeModal() {
           modal.style.display = 'none';
           document.body.style.overflow = 'auto';
-        });
+          
+          // Возвращаем черный фон шапки, если страница прокручена
+          if (window.scrollY > window.innerHeight * 0.1) {
+            headerOverlay.style.opacity = '1';
+          }
+        }
+        
+        closeBtn.addEventListener('click', closeModal);
         
         // Клик вне изображения закрывает модальное окно
         modal.addEventListener('click', function(e) {
           if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            closeModal();
           }
         });
         
@@ -269,8 +294,7 @@
               currentIndex = (currentIndex + 1) % items.length;
               openModal(currentIndex);
             } else if (e.key === 'Escape') {
-              modal.style.display = 'none';
-              document.body.style.overflow = 'auto';
+              closeModal();
             }
           }
         });

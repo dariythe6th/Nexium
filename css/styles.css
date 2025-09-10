@@ -103,7 +103,7 @@ header.scrolled {
   width: 100%;
   height: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0) 100%);
-  z-index: 999;
+  z-index: 800;
   transition: height 0.5s ease, opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
@@ -433,4 +433,64 @@ footer {
 .content-overlay.scrolled {
   opacity: 1;
   backdrop-filter: blur(0.5px);
+}
+
+
+/* Стили для анимированного подчеркивания */
+.active-indicator {
+  position: absolute;
+  bottom: -5px;
+  height: 3px;
+  background: linear-gradient(to right, 
+    rgba(255, 255, 0, 0) 0%, 
+    rgba(0, 166, 255, 0.8) 50%,
+    rgba(255, 255, 0, 0) 100%);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform-origin: left center;
+}
+
+
+
+
+
+
+/* Анимации для подчеркивания */
+.active-indicator.animate-right {
+  animation: underlineRight 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.active-indicator.animate-left {
+  animation: underlineLeft 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes underlineRight {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  50% {
+    transform: translateX(50%) scaleX(1.5);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes underlineLeft {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  50% {
+    transform: translateX(-50%) scaleX(1.5);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+/* Активное состояние ссылки */
+.menu .link.active {
+  color: #a2d4ff;
+  font-weight: bold;
 }
